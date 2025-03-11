@@ -13,7 +13,7 @@ int CanvasController::rectX() const
     return m_rectX;
 }
 
-void CanvasController::setRectX(int x)
+void CanvasController::setRectX(const int x)
 {
     if (m_rectX != x) {
         m_rectX = x;
@@ -26,7 +26,7 @@ int CanvasController::rectY() const
     return m_rectY;
 }
 
-void CanvasController::setRectY(int y)
+void CanvasController::setRectY(const int y)
 {
     if (m_rectY != y) {
         m_rectY = y;
@@ -39,7 +39,7 @@ int CanvasController::canvasWidth() const
     return m_canvasWidth;
 }
 
-void CanvasController::setCanvasWidth(int width)
+void CanvasController::setCanvasWidth(const int width)
 {
     if (m_canvasWidth != width) {
         m_canvasWidth = width;
@@ -52,7 +52,7 @@ int CanvasController::canvasHeight() const
     return m_canvasHeight;
 }
 
-void CanvasController::setCanvasHeight(int height)
+void CanvasController::setCanvasHeight(const int height)
 {
     if (m_canvasHeight != height) {
         m_canvasHeight = height;
@@ -60,12 +60,11 @@ void CanvasController::setCanvasHeight(int height)
     }
 }
 
-void CanvasController::moveRectangle(int deltaX, int deltaY)
+void CanvasController::move(const int x, const int y, const int deltaX, const int deltaY)
 {
-    int newX = m_rectX + deltaX;
-    int newY = m_rectY + deltaY;
+    int newX = x + deltaX;
+    int newY = y + deltaY;
 
-    // 限制边界
     if (newX < 0)
         newX = 0;
     if (newY < 0)

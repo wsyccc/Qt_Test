@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QWebEngineView>
@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     CanvasController canvasController;
 
+    engine.rootContext()->setContextProperty("canvasController", &canvasController);
     engine.rootContext()->setContextProperty("canvasController", &canvasController);
 
     QObject::connect(

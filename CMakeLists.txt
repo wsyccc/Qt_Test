@@ -10,6 +10,10 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appWebTest
     main.cpp
+        canvas_control/move_resize_widget.cpp
+        canvas_control/move_resize_widget.h
+        core/EditorManager/EditorEventHandler.cpp
+        core/EditorManager/EditorEventHandler.h
 )
 
 qt_add_qml_module(appWebTest
@@ -19,6 +23,7 @@ qt_add_qml_module(appWebTest
         Main.qml
         SOURCES canvasController.h
         SOURCES canvasController.cpp
+        SOURCES Triangle.cpp
 )
 
 

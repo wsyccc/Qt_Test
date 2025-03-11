@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class CanvasController : public QObject
+class CanvasController final : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int rectX READ rectX WRITE setRectX NOTIFY rectXChanged)
@@ -14,22 +14,22 @@ class CanvasController : public QObject
     Q_PROPERTY(int triangleY READ webTriangleY NOTIFY webTriangleYChanged)
 
 public:
-    explicit CanvasController(QObject *parent = nullptr);
+    explicit CanvasController(QObject* parent = nullptr);
 
-    int rectX() const;
+    [[nodiscard]] int rectX() const;
     void setRectX(int x);
 
-    int rectY() const;
+    [[nodiscard]] int rectY() const;
     void setRectY(int y);
 
-    int canvasWidth() const;
+    [[nodiscard]] int canvasWidth() const;
     void setCanvasWidth(int width);
 
-    int canvasHeight() const;
+    [[nodiscard]] int canvasHeight() const;
     void setCanvasHeight(int height);
 
-    int webTriangleX() const;
-    int webTriangleY() const;
+    [[nodiscard]] int webTriangleX() const;
+    [[nodiscard]] int webTriangleY() const;
 
 signals:
     void rectXChanged();
@@ -40,7 +40,7 @@ signals:
     void canvasHeightChanged();
 
 public slots:
-    void moveRectangle(int deltaX, int deltaY);
+    void move(int x, int y, int deltaX, int deltaY);
 
 private:
     int m_rectX;
@@ -48,8 +48,8 @@ private:
     int m_canvasWidth;
     int m_canvasHeight;
 
-    int m_triangleX;
-    int m_triangleY;
+    int m_triangleX{};
+    int m_triangleY{};
 };
 
 #endif // CANVASCONTROLLER_H

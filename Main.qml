@@ -35,7 +35,7 @@ Window {
                     onPositionChanged: {
                         let dx = mouseX - width / 2;
                         let dy = mouseY - height / 2;
-                        canvasController.moveRectangle(dx, dy);
+                        canvasController.move(canvasController.rectX, canvasController.rectY, dx, dy);
                     }
                 }
             }
