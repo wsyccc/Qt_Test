@@ -13,7 +13,7 @@
 
 class QuickWidget: public BaseWidget {
 public:
-    QuickWidget(int x, int y, int width, int height, QColor bg_qcolor, const WidgetType widget_type, QString qml_source): BaseWidget(x, y, width, height, bg_qcolor, widget_type, BaseWidgetType::QML_WIDGET), qml_source(std::move(qml_source)) {}
+    QuickWidget(int x, int y, int width, int height, QColor bg_color, const WidgetType widget_type, QString qml_source): BaseWidget(x, y, width, height, bg_color, widget_type, BaseWidgetType::QML_WIDGET), qml_source(std::move(qml_source)) {}
 
     void render() override
     {
