@@ -1,21 +1,24 @@
+//
+// Created by king on 2025-03-11.
+//
 
-#ifndef MOVE_RESIZE_WIDGET_H
-#define MOVE_RESIZE_WIDGET_H
+#ifndef EDITOREVENTHANDLER_H
+#define EDITOREVENTHANDLER_H
 
 #include <QObject>
 #include <QPointer>
 
-
-class move_resize_widget final : public QObject {
+class EditorEventHandler final : public QObject
+{
     Q_OBJECT
-    Q_PROPERTY(QObject* widget READ widget WRITE setWidget NOTIFY widgetChanged)
-    Q_PROPERTY(int x READ x WRITE setX NOTIFY positionChanged)
-    Q_PROPERTY(int y READ y WRITE setY NOTIFY positionChanged)
-    Q_PROPERTY(int width READ width WRITE setWidth NOTIFY sizeChanged)
-    Q_PROPERTY(int height READ height WRITE setHeight NOTIFY sizeChanged)
+    Q_PROPERTY(QObject* widget READ widget WRITE set_widget NOTIFY widget_changed)
+    Q_PROPERTY(int x READ x WRITE set_x NOTIFY position_changed)
+    Q_PROPERTY(int y READ y WRITE set_y NOTIFY position_changed)
+    Q_PROPERTY(int width READ width WRITE set_width NOTIFY size_changed)
+    Q_PROPERTY(int height READ height WRITE set_height NOTIFY size_changed)
 
 public:
-    explicit move_resize_widget(QObject* parent = nullptr);
+    explicit EditorEventHandler(QObject* parent = nullptr);
 
     [[nodiscard]] QObject* widget() const;
     void set_widget(QObject* widget);
@@ -32,7 +35,6 @@ public:
     [[nodiscard]] int height() const;
     void set_height(int height);
 
-
 public slots:
     void move(int deltaX, int deltaY);
     void resize(int deltaWidth, int deltaHeight);
@@ -47,9 +49,7 @@ private:
 
     void update_widget_position();
     void update_widget_size();
-
 };
 
 
-
-#endif //MOVE_RESIZE_WIDGET_H
+#endif //EDITOREVENTHANDLER_H

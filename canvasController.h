@@ -6,34 +6,34 @@
 class CanvasController final : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int rectX READ rectX WRITE setRectX NOTIFY rectXChanged)
-    Q_PROPERTY(int rectY READ rectY WRITE setRectY NOTIFY rectYChanged)
-    Q_PROPERTY(int canvasWidth READ canvasWidth WRITE setCanvasWidth NOTIFY canvasWidthChanged)
-    Q_PROPERTY(int canvasHeight READ canvasHeight WRITE setCanvasHeight NOTIFY canvasHeightChanged)
-    Q_PROPERTY(int triangleX READ webTriangleX NOTIFY webTriangleXChanged)
-    Q_PROPERTY(int triangleY READ webTriangleY NOTIFY webTriangleYChanged)
+    Q_PROPERTY(int rectX READ rectX WRITE set_rect_x NOTIFY rect_x_changed)
+    Q_PROPERTY(int rectY READ rectY WRITE set_rect_y NOTIFY rect_y_changed)
+    Q_PROPERTY(int canvas_width READ canvas_width WRITE set_canvas_width NOTIFY canvas_width_changed)
+    Q_PROPERTY(int canvas_height READ canvas_height WRITE set_canvas_height NOTIFY canvas_height_changed)
+    Q_PROPERTY(int triangle_x READ web_triangle_x NOTIFY web_triangle_x_changed)
+    Q_PROPERTY(int triangle_y READ web_triangle_y NOTIFY web_triangle_y_changed)
 
 public:
     explicit CanvasController(QObject* parent = nullptr);
 
-    [[nodiscard]] int rectX() const;
-    void setRectX(int x);
+    [[nodiscard]] int rect_x() const;
+    void set_rect_x(int x);
 
-    [[nodiscard]] int rectY() const;
-    void setRectY(int y);
+    [[nodiscard]] int rect_t() const;
+    void set_recty(int y);
 
-    [[nodiscard]] int canvasWidth() const;
-    void setCanvasWidth(int width);
+    [[nodiscard]] int canvas_wWidth() const;
+    void set_canvas_width(int width);
 
-    [[nodiscard]] int canvasHeight() const;
-    void setCanvasHeight(int height);
+    [[nodiscard]] int canvas_height() const;
+    void set_canvas_height(int height);
 
-    [[nodiscard]] int webTriangleX() const;
-    [[nodiscard]] int webTriangleY() const;
+    [[nodiscard]] int web_triangle_x() const;
+    [[nodiscard]] int web_triangle_y() const;
 
 signals:
-    void rectXChanged();
-    void rectYChanged();
+    void rect_x_changed();
+    void rect_y_changed();
     void webTriangleXChanged();
     void webTriangleYChanged();
     void canvasWidthChanged();

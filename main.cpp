@@ -6,12 +6,11 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
     CanvasController canvasController;
 
-    engine.rootContext()->setContextProperty("canvasController", &canvasController);
     engine.rootContext()->setContextProperty("canvasController", &canvasController);
 
     QObject::connect(
@@ -22,5 +21,5 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.loadFromModule("WebTest", "Main");
 
-    return app.exec();
+    return QApplication::exec();
 }
