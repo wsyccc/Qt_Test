@@ -5,34 +5,73 @@
 #include "BaseWidget.h"
 #include <QUuid>
 
-BaseWidget::BaseWidget(int x, int y, int width, int height, QColor bg_color,
-                       WidgetType widget_type, BaseWidgetType base_widget_type)
-    : x(x), y(y), width(width), height(height),
-      bg_color(bg_color), widget_type(widget_type), base_widget_type(base_widget_type)
+BaseWidget::BaseWidget(int x, int y, int width, int height, QColor bgColor,
+                       WidgetType widgetType, BaseWidgetType baseWidgetType, QQuickWidget* canvas)
+    : x(x), y(y), width(width), height(height), bgColor(bgColor),
+      widgetType(widgetType), baseWidgetType(baseWidgetType), canvas(canvas), id(QUuid::createUuid())
+{}
+
+
+int BaseWidget::getX() const { return x; }
+void BaseWidget::setX(const int newX)
 {
-    this->id = QUuid::createUuid();
+    if (x != newX)
+    {
+        x = newX;
+        emit positionChanged();
+    }
 }
 
+int BaseWidget::getY() const { return y; }
+void BaseWidget::setY(const int newY)
+{
+    if (y != newY)
+    {
+        y = newY;
+        emit positionChanged();
+    }
+}
 
-int BaseWidget::get_x() const { return x; }
-void BaseWidget::set_x(int new_x) { x = new_x; }
+int BaseWidget::getWidth() const { return width; }
+void BaseWidget::setWidth(const int newWidth)
+{
+    if (width != newWidth)
+    {
+        width = newWidth;
+        emit sizeChanged();
+    }
+}
 
-int BaseWidget::get_y() const { return y; }
-void BaseWidget::set_y(int new_y) { y = new_y; }
+int BaseWidget::getHeight() const { return height; }
+void BaseWidget::setHeight(const int newHeight)
+{
+    if (height != newHeight)
+    {
+        height = newHeight;
+        emit sizeChanged();
+    }
+}
 
-int BaseWidget::get_width() const { return width; }
-void BaseWidget::set_width(int new_width) { width = new_width; }
+QColor BaseWidget::getBgColor() const { return bgColor; }
+void BaseWidget::setBgColor(const QColor newBgColor) {
+    if (bgColor != newBgColor)
+    {
+        bgColor = newBgColor;
+        emit bgColorChanged();
+    }
+}
 
-int BaseWidget::get_height() const { return height; }
-void BaseWidget::set_height(int new_height) { height = new_height; }
+QQuickWidget *BaseWidget::getCanvas() const { return canvas; }
+void BaseWidget::setCanvas(QQuickWidget *newCanvas) { canvas = newCanvas; }
 
-QColor BaseWidget::get_bg_color() const { return bg_color; }
-void BaseWidget::set_bg_color(QColor new_bg_color) { bg_color = new_bg_color; }
 
-BaseWidget::WidgetType BaseWidget::get_widget_type() const { return widget_type; }
-void BaseWidget::set_widget_type(WidgetType new_type) { widget_type = new_type; }
 
-BaseWidget::BaseWidgetType BaseWidget::get_base_widget_type() const { return base_widget_type; }
-void BaseWidget::set_base_widget_type(BaseWidgetType new_base_widget_type) { base_widget_type = new_base_widget_type; }
+BaseWidget::WidgetType BaseWidget::getWidgetType() const { return widgetType; }
 
-QUuid BaseWidget::get_id() const { return id; }
+BaseWidget::BaseWidgetType BaseWidget::getBaseWidgetType() const { return baseWidgetType; }
+
+QUuid BaseWidget::getId() const { return id; }
+
+
+
+

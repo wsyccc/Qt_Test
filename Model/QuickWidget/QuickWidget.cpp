@@ -6,21 +6,52 @@
 #include <QDebug>
 #include <utility>
 
-QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bg_color,
-                         const WidgetType widget_type, QString qml_source)
-    : BaseWidget(x, y, width, height, bg_color, widget_type, BaseWidgetType::QUICK_WIDGET), qml_source(std::move(qml_source)) {}
+QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
+                         const WidgetType widgetType, QString qmlSource)
+    : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::QUICK_WIDGET),
+      qmlSource(std::move(qmlSource))
+{
+    qDebug() << "Rendering QML Widget from: " << qmlSource;
 
-void QuickWidget::render() {
-    qDebug() << "Rendering QML Widget from: " << qml_source;
+    quickWidget = new QQuickWidget(QUrl::fromLocalFile(qmlSource), nullptr);
+    quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    quickWidget->setGeometry(x, y, width, height);
+    quickWidget->setClearColor(bgColor);
+    quickWidget->show();
 
-    quick_widget = std::make_unique<QQuickWidget>();
-    quick_widget->setSource(QUrl(qml_source));
-    quick_widget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    quick_widget->setGeometry(x, y, width, height);
-    quick_widget->show();
+    connect(this, &BaseWidget::positionChanged, this, &QuickWidget::onPositionChanged);
+    connect(this, &BaseWidget::sizeChanged, this, &QuickWidget::onSizeChanged);
+    connect(this, &BaseWidget::bgColorChanged, this, &QuickWidget::onBgColorChanged);
 }
 
-QString QuickWidget::get_qml_source() const { return qml_source; }
+void QuickWidget::reRender()
+{
+    qDebug() << "Re-rendering Widget from: " << qmlSource;
+    quickWidget->update();
+}
 
-void QuickWidget::set_qml_source(const QString &new_qml_source) { qml_source = new_qml_source; }
+QString QuickWidget::getQmlSource() const { return qmlSource; }
+
+
+void QuickWidget::onPositionChanged()
+{
+    if (!quickWidget) return;
+
+    quickWidget->move(x, y);
+}
+
+void QuickWidget::onSizeChanged()
+{
+    if (!quickWidget) return;
+
+    quickWidget->resize(width, height);
+}
+
+void QuickWidget::onBgColorChanged()
+{
+    if (!quickWidget) return;
+
+    quickWidget->setClearColor(bgColor);
+
+}
 

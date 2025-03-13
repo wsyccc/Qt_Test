@@ -4,10 +4,9 @@
 
 #ifndef BASEWIDGET_H
 #define BASEWIDGET_H
-#include <QObject>
 #include <qpainter.h>
 #include <QUuid>
-
+#include <QQuickWidget>
 
 class BaseWidget : public QObject
 {
@@ -30,41 +29,54 @@ public:
     };
 
 
-    BaseWidget(int x, int y, int width, int height, QColor bg_color, WidgetType widget_type,
-               BaseWidgetType base_widget_type);
+    BaseWidget(int x, int y, int width, int height, QColor bgColor, WidgetType widgetType,
+               BaseWidgetType baseWidgetType, QQuickWidget *canvas = nullptr);
 
     virtual ~BaseWidget() = default;
 
-    [[nodiscard]] int get_x() const;
-    void set_x(int x);
+    [[nodiscard]] int getX() const;
+    void setX(int newX);
 
-    [[nodiscard]] int get_y() const;
-    void set_y(int y);
+    [[nodiscard]] int getY() const;
+    void setY(int newY);
 
-    [[nodiscard]] int get_width() const;
-    void set_width(int width);
+    [[nodiscard]] int getWidth() const;
+    void setWidth(int width);
 
-    [[nodiscard]] int get_height() const;
-    void set_height(int height);
+    [[nodiscard]] int getHeight() const;
+    void setHeight(int height);
 
-    [[nodiscard]] QColor get_bg_color() const;
-    void set_bg_color(QColor bg_color);
+    [[nodiscard]] QColor getBgColor() const;
+    void setBgColor(QColor bgColor);
 
-    [[nodiscard]] WidgetType get_widget_type() const;
-    void set_widget_type(WidgetType type);
+    [[nodiscard]] QQuickWidget *getCanvas() const;
+    void setCanvas(QQuickWidget *canvas);
 
-    [[nodiscard]] BaseWidgetType get_base_widget_type() const;
-    void set_base_widget_type(BaseWidgetType base_widget_type);
+    [[nodiscard]] WidgetType getWidgetType() const;
 
-    [[nodiscard]] QUuid get_id() const;
+    [[nodiscard]] BaseWidgetType getBaseWidgetType() const;
 
-    virtual void render() = 0;
+    [[nodiscard]] QUuid getId() const;
+
+    virtual void reRender() = 0;
+
+public slots:
+    virtual void onPositionChanged() = 0;
+    virtual void onSizeChanged() = 0;
+    virtual void onBgColorChanged() = 0;
+
+
+signals:
+    void positionChanged();
+    void sizeChanged();
+    void bgColorChanged();
 
 protected:
     int x, y, width, height;
-    QColor bg_color;
-    WidgetType widget_type;
-    BaseWidgetType base_widget_type;
+    QColor bgColor;
+    WidgetType widgetType;
+    BaseWidgetType baseWidgetType;
+    QQuickWidget *canvas;
     QUuid id;
 };
 

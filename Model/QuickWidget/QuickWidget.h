@@ -10,19 +10,33 @@
 
 
 class QuickWidget : public BaseWidget {
+
+    Q_OBJECT
+    Q_PROPERTY(int x READ x WRITE setX NOTIFY onPositionChanged)
+    Q_PROPERTY(int y READ y WRITE setY NOTIFY onPositionChanged)
+    Q_PROPERTY(int width READ width WRITE setWidth NOTIFY onSizeChanged)
+    Q_PROPERTY(int height READ height WRITE setHeight NOTIFY onSizeChanged)
+    Q_PROPERTY(QColor bg_color READ bg_color WRITE setBgColor NOTIFY onBgColorChanged)
+
 public:
-    QuickWidget(int x, int y, int width, int height, QColor bg_color, const WidgetType widget_type, QString qml_source);
+    QuickWidget(int x, int y, int width, int height, QColor bg_color, WidgetType widgetType, QString qmlSource);
 
-    void render() override;
+    void reRender() override;
 
-    [[nodiscard]] QString get_qml_source() const;
+    [[nodiscard]] QString getQmlSource() const;
 
-    void set_qml_source(const QString &new_qml_source);
+    QQuickWidget *quickWidget{};
 
-    std::unique_ptr<QQuickWidget> quick_widget;
+
+
+public slots:
+    void onPositionChanged() override;
+    void onSizeChanged() override;
+    void onBgColorChanged() override;
+
 
 private:
-    QString qml_source;
+    QString qmlSource;
 };
 
 
