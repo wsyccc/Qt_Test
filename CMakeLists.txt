@@ -16,6 +16,12 @@ qt_add_executable(appWebTest
         Model/BaseWidget/BaseWidget.h
         Model/QuickWidget/QuickWidget.cpp
         Model/QuickWidget/QuickWidget.h
+        Model/WebWidget/WebWidget.cpp
+        Model/WebWidget/WebWidget.h
+        Model/Canvas/Canvas.cpp
+        Model/Canvas/Canvas.h
+        Widgets/Rectangle/Rectangle.cpp
+        Widgets/Rectangle/Rectangle.h
 )
 
 qt_add_qml_module(appWebTest

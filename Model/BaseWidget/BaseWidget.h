@@ -6,6 +6,7 @@
 #define BASEWIDGET_H
 #include <QObject>
 #include <qpainter.h>
+#include <QUuid>
 
 
 class BaseWidget : public QObject
@@ -13,7 +14,7 @@ class BaseWidget : public QObject
 public:
     enum class BaseWidgetType
     {
-        QML_WIDGET,
+        QUICK_WIDGET,
         WEB_WIDGET,
     };
 
@@ -55,6 +56,8 @@ public:
     [[nodiscard]] BaseWidgetType get_base_widget_type() const;
     void set_base_widget_type(BaseWidgetType base_widget_type);
 
+    [[nodiscard]] QUuid get_id() const;
+
     virtual void render() = 0;
 
 protected:
@@ -62,6 +65,7 @@ protected:
     QColor bg_color;
     WidgetType widget_type;
     BaseWidgetType base_widget_type;
+    QUuid id;
 };
 
 

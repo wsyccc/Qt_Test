@@ -7,24 +7,23 @@
 #include "Model/BaseWidget/BaseWidget.h"
 #include <QQuickWidget>
 #include <Qstring>
-#include <Qcolor>
-#include <utility>
 
 
-class QuickWidget: public BaseWidget {
+class QuickWidget : public BaseWidget {
 public:
-    QuickWidget(int x, int y, int width, int height, QColor bg_color, const WidgetType widget_type, QString qml_source): BaseWidget(x, y, width, height, bg_color, widget_type, BaseWidgetType::QML_WIDGET), qml_source(std::move(qml_source)) {}
+    QuickWidget(int x, int y, int width, int height, QColor bg_color, const WidgetType widget_type, QString qml_source);
 
-    void render() override
-    {
-        qDebug() << "Rendering QML Widget ";
-        auto *quickWidget = new QQuickWidget();
-    }
+    void render() override;
+
+    [[nodiscard]] QString get_qml_source() const;
+
+    void set_qml_source(const QString &new_qml_source);
+
+    std::unique_ptr<QQuickWidget> quick_widget;
 
 private:
     QString qml_source;
 };
-
 
 
 #endif //QUICKWIDGET_H

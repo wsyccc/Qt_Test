@@ -3,12 +3,14 @@
 //
 
 #include "BaseWidget.h"
+#include <QUuid>
 
 BaseWidget::BaseWidget(int x, int y, int width, int height, QColor bg_color,
                        WidgetType widget_type, BaseWidgetType base_widget_type)
     : x(x), y(y), width(width), height(height),
       bg_color(bg_color), widget_type(widget_type), base_widget_type(base_widget_type)
 {
+    this->id = QUuid::createUuid();
 }
 
 
@@ -32,3 +34,5 @@ void BaseWidget::set_widget_type(WidgetType new_type) { widget_type = new_type; 
 
 BaseWidget::BaseWidgetType BaseWidget::get_base_widget_type() const { return base_widget_type; }
 void BaseWidget::set_base_widget_type(BaseWidgetType new_base_widget_type) { base_widget_type = new_base_widget_type; }
+
+QUuid BaseWidget::get_id() const { return id; }
