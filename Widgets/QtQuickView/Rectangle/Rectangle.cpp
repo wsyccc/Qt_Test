@@ -7,8 +7,8 @@
 #include <QDebug>
 #include <utility>
 
-Rectangle::Rectangle(int x, int y, int width, int height, QColor bgColor, QString text)
-    : QuickWidget(x, y, width, height, bgColor, WidgetType::RECTANGLE, "qrc:/qml/Rectangle.qml"), text(std::move(text)) {
+Rectangle::Rectangle(int x, int y, int width, int height, QColor bgColor, QString text, QQuickWidget *canvas)
+    : QuickWidget(x, y, width, height, bgColor, WidgetType::RECTANGLE, "qrc:/qml/Rectangle.qml", canvas), text(std::move(text)) {
     qDebug() << "Creating RectangleWidget at (" << x << "," << y << ") with size (" << width << "," << height << ")";
 
     connect(this, &Rectangle::textChanged, this, &Rectangle::onTextChanged);

@@ -4,11 +4,14 @@
 
 #include "Canvas.h"
 
+#include <QQmlContext>
+
 Canvas::Canvas(QWidget *parent)
-    : QQuickWidget(QUrl("qrc:/qml/Canvas.qml"), parent) {
-    setResizeMode(SizeRootObjectToView);
+    : QQuickWidget(QUrl("qrc:/Model/Canvas/Canvas.qml"), parent) {
+    setResizeMode(SizeViewToRootObject);
     setBaseSize(400, 300);
     setMinimumSize(400, 300);
+    context = this->rootContext();
 }
 
 void Canvas::addWidget(BaseWidget *widget) {
@@ -24,7 +27,8 @@ void Canvas::addWidget(BaseWidget *widget) {
         return;
     }
     widgets.insert(id, widget);
-    widget->setParent(this);
+    context -> setContextProperty(id.toString(), widget);
+    widget->setCanvas(this);
     update();
     qDebug() << "Widget added with ID:" << id;
 }

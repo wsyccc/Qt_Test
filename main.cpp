@@ -9,10 +9,10 @@ int main(int argc, char *argv[])
 
     QMainWindow mainWindow;
     mainWindow.setWindowTitle("Canvas Manager Example");
-    mainWindow.resize(1024, 768);
+    mainWindow.resize(1920, 1080);
 
-    auto *canvasManager = new CanvasManager(&mainWindow);
-    mainWindow.setCentralWidget(canvasManager);
+    const auto *canvasManager = new CanvasManager(&mainWindow);
+    mainWindow.setCentralWidget(canvasManager->getCanvas());
 
     mainWindow.show();
 

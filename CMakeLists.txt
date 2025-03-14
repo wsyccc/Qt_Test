@@ -29,6 +29,8 @@ qt_add_qml_module(appWebTest
         VERSION 1.0
         QML_FILES
         Main.qml
+        Model/Canvas/Canvas.qml
+        Widgets/QtQuickView/Rectangle/Rectangle.qml
 )
 
 

@@ -11,7 +11,7 @@ class Rectangle: public QuickWidget {
     Q_OBJECT
     Q_PROPERTY(QString text READ getText WRITE setText NOTIFY textChanged)
 public:
-    explicit Rectangle(int x, int y, int width, int height, QColor bgColor, QString text = "");
+    explicit Rectangle(int x, int y, int width, int height, QColor bgColor, QString text = "", QQuickWidget *canvas = nullptr);
 
     [[nodiscard]] QString getText() const;
     void setText(QString text);

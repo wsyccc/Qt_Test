@@ -12,9 +12,8 @@ CanvasManager::CanvasManager(QWidget *parent)
     : QWidget(parent), guidelinesEnabled(false), snip2gridEnabled(false) {
     auto layout = new QVBoxLayout(this);
     canvas = new Canvas(this);
-    layout->addWidget(canvas);
     setLayout(layout);
-    const auto rect = new Rectangle(0, 0, 100, 100, QColor(255, 0, 0), "100");
+    const auto rect = new Rectangle(0, 0, 100, 100, QColor(255, 0, 0), "100", canvas);
     canvas->addWidget(rect);
 }
 

@@ -10,6 +10,8 @@
 
 class BaseWidget : public QObject
 {
+    Q_OBJECT
+
 public:
     enum class BaseWidgetType
     {
@@ -30,7 +32,7 @@ public:
 
 
     BaseWidget(int x, int y, int width, int height, QColor bgColor, WidgetType widgetType,
-               BaseWidgetType baseWidgetType, QQuickWidget *canvas = nullptr);
+               BaseWidgetType baseWidgetType, QQuickWidget* canvas = nullptr);
 
     virtual ~BaseWidget() = default;
 
@@ -49,14 +51,16 @@ public:
     [[nodiscard]] QColor getBgColor() const;
     void setBgColor(QColor bgColor);
 
-    [[nodiscard]] QQuickWidget *getCanvas() const;
-    void setCanvas(QQuickWidget *canvas);
+    [[nodiscard]] QQuickWidget* getCanvas() const;
 
     [[nodiscard]] WidgetType getWidgetType() const;
 
     [[nodiscard]] BaseWidgetType getBaseWidgetType() const;
 
     [[nodiscard]] QUuid getId() const;
+
+
+    void setCanvas(QQuickWidget* newCanvas);
 
     virtual void reRender() = 0;
 
@@ -76,7 +80,7 @@ protected:
     QColor bgColor;
     WidgetType widgetType;
     BaseWidgetType baseWidgetType;
-    QQuickWidget *canvas;
+    QQuickWidget* canvas;
     QUuid id;
 };
 

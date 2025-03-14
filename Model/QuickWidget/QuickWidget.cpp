@@ -9,8 +9,8 @@
 #include <utility>
 
 QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
-                         const WidgetType widgetType, QString qmlSource)
-    : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::QUICK_WIDGET),
+                         const WidgetType widgetType, QString qmlSource, QQuickWidget *canvas)
+    : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::QUICK_WIDGET, canvas),
       qmlSource(std::move(qmlSource))
 {
     qDebug() << QString::asprintf("Rendering QML %d from: %s", widgetType, qmlSource.toStdString().c_str()) << Qt::endl;

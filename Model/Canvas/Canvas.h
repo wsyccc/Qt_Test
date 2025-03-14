@@ -30,6 +30,7 @@ public:
 private:
     QMap<QUuid, BaseWidget *> widgets;
     QUuid selectedWidgetId;
+    QQmlContext *context;
 };
 
 
