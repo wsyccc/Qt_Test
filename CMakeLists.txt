@@ -10,8 +10,6 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appWebTest
         main.cpp
-        Managers/QMLBridge/EditorManager/EditorEventHandler.cpp
-        Managers/QMLBridge/EditorManager/EditorEventHandler.h
         Model/BaseWidget/BaseWidget.cpp
         Model/BaseWidget/BaseWidget.h
         Model/QuickWidget/QuickWidget.cpp
@@ -22,6 +20,8 @@ qt_add_executable(appWebTest
         Model/Canvas/Canvas.h
         Widgets/QtQuickView/Rectangle/Rectangle.cpp
         Widgets/QtQuickView/Rectangle/Rectangle.h
+        Managers/CanvasManager/CanvasManager.cpp
+        Managers/CanvasManager/CanvasManager.h
 )
 
 qt_add_qml_module(appWebTest

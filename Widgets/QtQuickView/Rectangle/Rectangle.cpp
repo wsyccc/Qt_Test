@@ -32,12 +32,10 @@ void Rectangle::onTextChanged() const
 {
     bool isNumber;
     text.toInt(&isNumber);
-    if (isNumber)
-    {
-        qDebug() << "Text is a number!";
-    }
-    else
+    if (!isNumber)
     {
         qDebug() << "Text is not a number!";
+        return;
     }
+    qDebug() << "Text is not a number!";
 }

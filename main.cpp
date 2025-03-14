@@ -1,25 +1,20 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
-#include <QWebEngineView>
-#include "canvasController.h"
+#include <QMainWindow>
+
+#include "Managers/CanvasManager/CanvasManager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
-    CanvasController canvasController;
+    QMainWindow mainWindow;
+    mainWindow.setWindowTitle("Canvas Manager Example");
+    mainWindow.resize(1024, 768);
 
-    engine.rootContext()->setContextProperty("canvasController", &canvasController);
+    auto *canvasManager = new CanvasManager(&mainWindow);
+    mainWindow.setCentralWidget(canvasManager);
 
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreationFailed,
-        &app,
-        []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
-    engine.loadFromModule("WebTest", "Main");
+    mainWindow.show();
 
-    return QApplication::exec();
+    return app.exec();
 }

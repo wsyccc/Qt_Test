@@ -3,6 +3,8 @@
 //
 
 #include "QuickWidget.h"
+
+#include <ostream>
 #include <QDebug>
 #include <utility>
 
@@ -11,7 +13,7 @@ QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
     : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::QUICK_WIDGET),
       qmlSource(std::move(qmlSource))
 {
-    qDebug() << "Rendering QML Widget from: " << qmlSource;
+    qDebug() << QString::asprintf("Rendering QML %d from: %s", widgetType, qmlSource.toStdString().c_str()) << Qt::endl;
 
     quickWidget = new QQuickWidget(QUrl::fromLocalFile(qmlSource), nullptr);
     quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
@@ -19,14 +21,14 @@ QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
     quickWidget->setClearColor(bgColor);
     quickWidget->show();
 
-    connect(this, &BaseWidget::positionChanged, this, &QuickWidget::onPositionChanged);
-    connect(this, &BaseWidget::sizeChanged, this, &QuickWidget::onSizeChanged);
-    connect(this, &BaseWidget::bgColorChanged, this, &QuickWidget::onBgColorChanged);
+    connect(this, &BaseWidget::positionChanged, this, &BaseWidget::onPositionChanged);
+    connect(this, &BaseWidget::sizeChanged, this, &BaseWidget::onSizeChanged);
+    connect(this, &BaseWidget::bgColorChanged, this, &BaseWidget::onBgColorChanged);
 }
 
 void QuickWidget::reRender()
 {
-    qDebug() << "Re-rendering Widget from: " << qmlSource;
+    qDebug() << QString::asprintf("Re-Rendering QML %d from: %s", widgetType, qmlSource.toStdString().c_str()) << Qt::endl;
     quickWidget->update();
 }
 

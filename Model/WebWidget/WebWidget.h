@@ -13,17 +13,17 @@
 
 class WebWidget: public BaseWidget {
 public:
-    WebWidget(int x, int y, int width, int height, QColor bg_color,
-              WidgetType widget_type, QString web_url);
+    WebWidget(int x, int y, int width, int height, QColor bgColor,
+              WidgetType widgetType, QString webUrl);
 
-    void render() override;
+    void reRender() override;
 
-    [[nodiscard]] QString get_web_url() const;
-    void set_web_url(const QString &new_web_url);
+    [[nodiscard]] QString getWebUrl() const;
+    void setWebUrl(const QString &newWebUrl);
 
 private:
-    QString web_url;
-    std::unique_ptr<QWebEngineView> web_view;
+    QString webUrl;
+    std::unique_ptr<QWebEngineView> webView;
 };
 
 #endif // WEBWIDGET_H
