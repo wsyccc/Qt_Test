@@ -4,9 +4,11 @@ project(WebTest VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Quick QuickWidgets WebEngineWidgets)
+find_package(Qt6 6.2 COMPONENTS Core Gui Qml Widgets Quick QuickWidgets WebEngineWidgets REQUIRED)
 
 qt_standard_project_setup(REQUIRES 6.5)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 qt_add_executable(appWebTest
         main.cpp
@@ -23,14 +25,21 @@ qt_add_executable(appWebTest
         Managers/CanvasManager/CanvasManager.cpp
         Managers/CanvasManager/CanvasManager.h
 )
+#
+#qt_add_qml_module(canvas
+#        URI Canvas
+#        VERSION 1.0
+#        QML_FILES
+#            Model/Canvas/Canvas.qml
+#)
 
 qt_add_qml_module(appWebTest
         URI WebTest
         VERSION 1.0
         QML_FILES
-        Main.qml
-        Model/Canvas/Canvas.qml
-        Widgets/QtQuickView/Rectangle/Rectangle.qml
+            Model/Canvas/canvas.qml
+            Widgets/QtQuickView/Rectangle/rectangle.qml
+        NO_RESOURCE_TARGET_PATH
 )
 
 
@@ -49,6 +58,7 @@ target_link_libraries(appWebTest
         PRIVATE
         Qt6::Core
         Qt6::Gui
+        Qt6::Qml
         Qt6::Widgets
         Qt6::Quick
         Qt6::QuickWidgets

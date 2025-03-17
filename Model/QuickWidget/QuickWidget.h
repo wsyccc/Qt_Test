@@ -12,14 +12,14 @@
 class QuickWidget : public BaseWidget {
 
     Q_OBJECT
-    Q_PROPERTY(int x READ getX WRITE setX NOTIFY onPositionChanged)
-    Q_PROPERTY(int y READ getY WRITE setY NOTIFY onPositionChanged)
-    Q_PROPERTY(int width READ getWidth WRITE setWidth NOTIFY onSizeChanged)
-    Q_PROPERTY(int height READ getHeight WRITE setHeight NOTIFY onSizeChanged)
-    Q_PROPERTY(QColor bColor READ getBgColor WRITE setBgColor NOTIFY onBgColorChanged)
+    Q_PROPERTY(int x READ x WRITE setX NOTIFY onPositionChanged)
+    Q_PROPERTY(int y READ y WRITE setY NOTIFY onPositionChanged)
+    Q_PROPERTY(int width READ width WRITE setWidth NOTIFY onSizeChanged)
+    Q_PROPERTY(int height READ height WRITE setHeight NOTIFY onSizeChanged)
+    Q_PROPERTY(QColor bColor READ bgColor WRITE setBgColor NOTIFY onBgColorChanged)
 
 public:
-    QuickWidget(int x, int y, int width, int height, QColor bgColor, WidgetType widgetType, QString qmlSource, QQuickWidget *canvas = nullptr);
+    QuickWidget(int x, int y, int width, int height, QColor bgColor, WidgetType widgetType, const QString& qmlSource, QQuickWidget *canvas = nullptr);
 
     void reRender() override;
 

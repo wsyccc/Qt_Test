@@ -5,6 +5,7 @@
 #include "CanvasManager.h"
 #include <QVBoxLayout>
 #include <QDebug>
+#include <QQmlApplicationEngine>
 
 #include "Widgets/QtQuickView/Rectangle/Rectangle.h"
 

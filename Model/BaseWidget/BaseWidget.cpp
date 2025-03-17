@@ -7,70 +7,70 @@
 
 BaseWidget::BaseWidget(int x, int y, int width, int height, QColor bgColor,
                        WidgetType widgetType, BaseWidgetType baseWidgetType, QQuickWidget* canvas)
-    : x(x), y(y), width(width), height(height), bgColor(bgColor),
-      widgetType(widgetType), baseWidgetType(baseWidgetType), canvas(canvas), id(QUuid::createUuid())
+    : localX(x), localY(y), localWidth(width), localHeight(height), localBgColor(bgColor),
+      localWidgetType(widgetType), localBaseWidgetType(baseWidgetType), localCanvas(canvas), localId(QUuid::createUuid())
 {}
 
 
-int BaseWidget::getX() const { return x; }
+int BaseWidget::x() const { return localX; }
 void BaseWidget::setX(const int newX)
 {
-    if (x != newX)
+    if (localX != newX)
     {
-        x = newX;
+        localX = newX;
         emit positionChanged();
     }
 }
 
-int BaseWidget::getY() const { return y; }
+int BaseWidget::y() const { return localY; }
 void BaseWidget::setY(const int newY)
 {
-    if (y != newY)
+    if (localY != newY)
     {
-        y = newY;
+        localY = newY;
         emit positionChanged();
     }
 }
 
-int BaseWidget::getWidth() const { return width; }
+int BaseWidget::width() const { return localWidth; }
 void BaseWidget::setWidth(const int newWidth)
 {
-    if (width != newWidth)
+    if (localWidth != newWidth)
     {
-        width = newWidth;
+        localWidth = newWidth;
         emit sizeChanged();
     }
 }
 
-int BaseWidget::getHeight() const { return height; }
+int BaseWidget::height() const { return localHeight; }
 void BaseWidget::setHeight(const int newHeight)
 {
-    if (height != newHeight)
+    if (localHeight != newHeight)
     {
-        height = newHeight;
+        localHeight = newHeight;
         emit sizeChanged();
     }
 }
 
-QColor BaseWidget::getBgColor() const { return bgColor; }
+QColor BaseWidget::bgColor() const { return localBgColor; }
 void BaseWidget::setBgColor(const QColor newBgColor) {
-    if (bgColor != newBgColor)
+    if (localBgColor != newBgColor)
     {
-        bgColor = newBgColor;
+        localBgColor = newBgColor;
         emit bgColorChanged();
     }
 }
 
-QQuickWidget *BaseWidget::getCanvas() const { return canvas; }
-void BaseWidget::setCanvas(QQuickWidget *newCanvas) { canvas = newCanvas; }
+QQuickWidget *BaseWidget::canvas() const { return localCanvas; }
+void BaseWidget::setCanvas(QQuickWidget *newCanvas) { localCanvas = newCanvas; }
 
 
 
-BaseWidget::WidgetType BaseWidget::getWidgetType() const { return widgetType; }
+BaseWidget::WidgetType BaseWidget::widgetType() const { return localWidgetType; }
 
-BaseWidget::BaseWidgetType BaseWidget::getBaseWidgetType() const { return baseWidgetType; }
+BaseWidget::BaseWidgetType BaseWidget::baseWidgetType() const { return localBaseWidgetType; }
 
-QUuid BaseWidget::getId() const { return id; }
+QUuid BaseWidget::id() const { return localId; }
 
 
 

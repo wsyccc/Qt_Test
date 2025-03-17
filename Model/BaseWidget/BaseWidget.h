@@ -36,28 +36,28 @@ public:
 
     virtual ~BaseWidget() = default;
 
-    [[nodiscard]] int getX() const;
+    [[nodiscard]] int x() const;
     void setX(int newX);
 
-    [[nodiscard]] int getY() const;
+    [[nodiscard]] int y() const;
     void setY(int newY);
 
-    [[nodiscard]] int getWidth() const;
+    [[nodiscard]] int width() const;
     void setWidth(int width);
 
-    [[nodiscard]] int getHeight() const;
+    [[nodiscard]] int height() const;
     void setHeight(int height);
 
-    [[nodiscard]] QColor getBgColor() const;
+    [[nodiscard]] QColor bgColor() const;
     void setBgColor(QColor bgColor);
 
-    [[nodiscard]] QQuickWidget* getCanvas() const;
+    [[nodiscard]] QQuickWidget* canvas() const;
 
-    [[nodiscard]] WidgetType getWidgetType() const;
+    [[nodiscard]] WidgetType widgetType() const;
 
-    [[nodiscard]] BaseWidgetType getBaseWidgetType() const;
+    [[nodiscard]] BaseWidgetType baseWidgetType() const;
 
-    [[nodiscard]] QUuid getId() const;
+    [[nodiscard]] QUuid id() const;
 
 
     void setCanvas(QQuickWidget* newCanvas);
@@ -76,12 +76,12 @@ signals:
     void bgColorChanged();
 
 protected:
-    int x, y, width, height;
-    QColor bgColor;
-    WidgetType widgetType;
-    BaseWidgetType baseWidgetType;
-    QQuickWidget* canvas;
-    QUuid id;
+    int localX, localY, localWidth, localHeight;
+    QColor localBgColor;
+    WidgetType localWidgetType;
+    BaseWidgetType localBaseWidgetType;
+    QQuickWidget* localCanvas;
+    QUuid localId;
 };
 
 

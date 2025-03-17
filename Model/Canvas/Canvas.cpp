@@ -7,7 +7,7 @@
 #include <QQmlContext>
 
 Canvas::Canvas(QWidget *parent)
-    : QQuickWidget(QUrl("qrc:/Model/Canvas/Canvas.qml"), parent) {
+    : QQuickWidget(QUrl("qrc:/Model/Canvas/canvas.qml"), parent) {
     setResizeMode(SizeViewToRootObject);
     setBaseSize(400, 300);
     setMinimumSize(400, 300);
@@ -20,7 +20,7 @@ void Canvas::addWidget(BaseWidget *widget) {
         qDebug() << "Attempted to add a null widget.";
         return;
     }
-    const QUuid id = widget->getId();
+    const QUuid id = widget->id();
     if (widgets.contains(id))
     {
         qDebug() << "Widget with ID" << id << "already exists.";
@@ -67,7 +67,7 @@ void Canvas::setSelectedWidget(const QUuid id)
     selectedWidgetId = id;
 }
 
-BaseWidget *Canvas::getSelectedWidget() const
+BaseWidget *Canvas::selectedWidget() const
 {
     if (!selectedWidgetId.isNull())
     {

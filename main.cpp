@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QMainWindow>
+#include <QDir>
 
 #include "Managers/CanvasManager/CanvasManager.h"
 

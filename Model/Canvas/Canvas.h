@@ -20,12 +20,12 @@ public:
     void setCanvasSize(int width, int height);
     void setSelectedWidget(QUuid id);
 
-    BaseWidget *getSelectedWidget() const;
+    [[nodiscard]] BaseWidget *selectedWidget() const;
 
     void drawGuidelines();
     void snip2Grid();
 
-    BaseWidget *getWidget(QUuid id) const;
+    [[nodiscard]] BaseWidget *getWidget(QUuid id) const;
 
 private:
     QMap<QUuid, BaseWidget *> widgets;

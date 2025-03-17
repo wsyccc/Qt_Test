@@ -9,13 +9,13 @@
 #include <utility>
 
 QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
-                         const WidgetType widgetType, QString qmlSource, QQuickWidget *canvas)
+                         const WidgetType widgetType, const QString& qmlSource, QQuickWidget *canvas)
     : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::QUICK_WIDGET, canvas),
-      qmlSource(std::move(qmlSource))
+      qmlSource(qmlSource)
 {
-    qDebug() << QString::asprintf("Rendering QML %d from: %s", widgetType, qmlSource.toStdString().c_str()) << Qt::endl;
+    qDebug() << QString("Rendering QML %1 from: %2").arg(static_cast<qlonglong>(widgetType)).arg(qmlSource) << Qt::endl;
 
-    quickWidget = new QQuickWidget(QUrl::fromLocalFile(qmlSource), nullptr);
+    quickWidget = new QQuickWidget(QUrl(qmlSource), nullptr);
     quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     quickWidget->setGeometry(x, y, width, height);
     quickWidget->setClearColor(bgColor);
@@ -28,7 +28,7 @@ QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
 
 void QuickWidget::reRender()
 {
-    qDebug() << QString::asprintf("Re-Rendering QML %d from: %s", widgetType, qmlSource.toStdString().c_str()) << Qt::endl;
+    qDebug() << QString::asprintf("Re-Rendering QML %d from: %s", widgetType(), qmlSource.toStdString().c_str()) << Qt::endl;
     quickWidget->update();
 }
 
@@ -39,21 +39,21 @@ void QuickWidget::onPositionChanged()
 {
     if (!quickWidget) return;
 
-    quickWidget->move(x, y);
+    quickWidget->move(x(), y());
 }
 
 void QuickWidget::onSizeChanged()
 {
     if (!quickWidget) return;
 
-    quickWidget->resize(width, height);
+    quickWidget->resize(width(), height());
 }
 
 void QuickWidget::onBgColorChanged()
 {
     if (!quickWidget) return;
 
-    quickWidget->setClearColor(bgColor);
+    quickWidget->setClearColor(bgColor());
 
 }
 

@@ -9,11 +9,11 @@
 
 class Rectangle: public QuickWidget {
     Q_OBJECT
-    Q_PROPERTY(QString text READ getText WRITE setText NOTIFY textChanged)
+    Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
 public:
-    explicit Rectangle(int x, int y, int width, int height, QColor bgColor, QString text = "", QQuickWidget *canvas = nullptr);
+    explicit Rectangle(int x, int y, int width, int height, QColor bgColor, const QString& text = "", QQuickWidget *canvas = nullptr);
 
-    [[nodiscard]] QString getText() const;
+    [[nodiscard]] QString text() const;
     void setText(QString text);
 
 public slots:
@@ -25,7 +25,7 @@ signals:
 
 
 private:
-    QString text;
+    QString localText;
 
 };
 
