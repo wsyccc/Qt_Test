@@ -8,11 +8,11 @@
 
 
 WebWidget::WebWidget(int x, int y, int width, int height, QColor bgColor,
-                     const WidgetType widgetType, QString webUrl)
-    : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::WEB_WIDGET),
+                     const WidgetType widgetType, QString webUrl, QQuickWidget *canvas)
+    : BaseWidget(x, y, width, height, bgColor, widgetType, BaseWidgetType::WEB_WIDGET, canvas),
       webUrl(std::move(webUrl))
 {
-    webView = std::make_unique<QWebEngineView>();
+    webView = new QWebEngineView(canvas);
     webView->setUrl(QUrl(webUrl));
     webView->setGeometry(x, y, width, height);
     webView->show();

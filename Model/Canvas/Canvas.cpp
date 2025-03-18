@@ -5,6 +5,7 @@
 #include "Canvas.h"
 
 #include <QQmlContext>
+#include <QVBoxLayout>
 
 Canvas::Canvas(QWidget *parent)
     : QQuickWidget(QUrl("qrc:/Model/Canvas/canvas.qml"), parent) {
@@ -27,7 +28,6 @@ void Canvas::addWidget(BaseWidget *widget) {
         return;
     }
     widgets.insert(id, widget);
-    context -> setContextProperty(id.toString(), widget);
     widget->setCanvas(this);
     update();
     qDebug() << "Widget added with ID:" << id;

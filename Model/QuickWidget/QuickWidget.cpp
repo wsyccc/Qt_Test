@@ -15,7 +15,7 @@ QuickWidget::QuickWidget(int x, int y, int width, int height, QColor bgColor,
 {
     qDebug() << QString("Rendering QML %1 from: %2").arg(static_cast<qlonglong>(widgetType)).arg(qmlSource) << Qt::endl;
 
-    quickWidget = new QQuickWidget(QUrl(qmlSource), nullptr);
+    quickWidget = new QQuickWidget(QUrl(qmlSource), canvas);
     quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     quickWidget->setGeometry(x, y, width, height);
     quickWidget->setClearColor(bgColor);

@@ -14,7 +14,7 @@
 class WebWidget: public BaseWidget {
 public:
     WebWidget(int x, int y, int width, int height, QColor bgColor,
-              WidgetType widgetType, QString webUrl);
+              WidgetType widgetType, QString webUrl, QQuickWidget *canvas);
 
     void reRender() override;
 
@@ -23,7 +23,7 @@ public:
 
 private:
     QString webUrl;
-    std::unique_ptr<QWebEngineView> webView;
+    QWebEngineView* webView;
 };
 
 #endif // WEBWIDGET_H

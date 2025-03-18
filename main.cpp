@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     const auto *canvasManager = new CanvasManager(&mainWindow);
     mainWindow.setCentralWidget(canvasManager->getCanvas());
 
+
     mainWindow.show();
 
     return app.exec();

@@ -5,6 +5,8 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+#include <QVBoxLayout>
+
 #include "Model/BaseWidget/BaseWidget.h"
 
 class Canvas final : public QQuickWidget {

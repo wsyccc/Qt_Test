@@ -3,8 +3,8 @@ import QtQuick.Controls
 
 Rectangle {
     id: rectangle
-    x: rectId.x ?? 0
-    y: rectId.y ?? 0
+    x: parent.x ?? 0
+    y: parent.y ?? 0
     width: rectId.width ?? 500
     height: rectId.height ?? 500
     color: rectId.bgColor ?? "blue"

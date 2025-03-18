@@ -62,7 +62,10 @@ void BaseWidget::setBgColor(const QColor newBgColor) {
 }
 
 QQuickWidget *BaseWidget::canvas() const { return localCanvas; }
-void BaseWidget::setCanvas(QQuickWidget *newCanvas) { localCanvas = newCanvas; }
+void BaseWidget::setCanvas(QQuickWidget *newCanvas)
+{
+    localCanvas = newCanvas;
+}
 
 
 
